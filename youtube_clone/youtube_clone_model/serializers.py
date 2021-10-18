@@ -8,7 +8,9 @@ class CommentSerializer(serializers.ModelSerializer):
             'id',
             'username',
             'body',
-            'videoId'
+            'videoId',
+            'likes',
+            'dislikes'
             
             
         ]
