@@ -51,14 +51,14 @@ class CommentDetail(APIView):
         return Response(status=status.HTTP_204_NO_CONTENT)    
 
     # field parameter recieves string 'likes' or 'dislikes' to increment the field respectively
-    def patch(self, request, pk, field, updated_info=None ):
+    def patch(self, request, pk, updated_info=None ):
         comment = self.get_object(pk)
-        if field=='likes':
-            updated_info=comment.likes +1
-        if field=='dislikes':
-            updated_info=comment.dislikes +1    
-        data = {field: updated_info}
-        serializer = CommentSerializer(comment, data=data, partial=True)
+        # if field=='likes':
+        #     updated_info=comment.likes +1
+        # if field=='dislikes':
+        #     updated_info=comment.dislikes +1    
+        # data = {field: updated_info}
+        serializer = CommentSerializer(comment, data=request.data, partial=True)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)
