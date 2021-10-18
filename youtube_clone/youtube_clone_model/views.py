@@ -54,9 +54,9 @@ class CommentDetail(APIView):
     def patch(self, request, pk, field, updated_info=None ):
         comment = self.get_object(pk)
         if field=='likes':
-            updated_info=Comment.likes +1
+            updated_info=comment.likes +1
         if field=='dislikes':
-            updated_info=Comment.dislikes +1    
+            updated_info=comment.dislikes +1    
         data = {field: updated_info}
         serializer = CommentSerializer(comment, data=data, partial=True)
         if serializer.is_valid():
